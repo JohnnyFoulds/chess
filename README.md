@@ -2,15 +2,34 @@
 
 As a start this repository will be simply to extract all the games for a player on chess.com
 
+## Political Correctness
+
+```bash
+git branch -m main master
+git status
+git push -u origin master
+
+## go to github and change the default branch
+git push origin --delete main
+```
+
+### Web References
+
+- [How to Rename the master branch to main in Git](https://www.git-tower.com/learn/git/faq/git-rename-master-to-main/)
+
 ## Download All Games
 
 ### CLI
+
+The following command was used to download all the games for player `piettie`.
 
 ```bash
 for g in $(curl -Ls https://api.chess.com/pub/player/piettie/games/archives | jq -rc ".archives[]") ; do curl -Ls "$g" | jq -rc ".games[].pgn" ; done >> games.pgn
 ```
 
 ### Using Python
+
+The following Python code was not tested but can be tried as an alternative.
 
 ```python
 # chess.com API -> https://www.chess.com/news/view/published-data-api
